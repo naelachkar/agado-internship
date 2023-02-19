@@ -17,7 +17,7 @@ export default function BuiltIn() {
             <h1>Built-in JavaScript</h1>
             <div>
                 <textarea onChange={(e) => setText(e.target.value)}></textarea>
-                <button onClick={textToSpeech}>Speak</button>
+                <button onClick={textToSpeech}>Speak in {lang}</button>
             </div>
             <div>
                 <button onClick={() => setLang("en-US")}>English (US)</button>
