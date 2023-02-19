@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import BuiltIn from "./components/BuiltIn";
-import EasySpeech from "./components/EasySpeech";
+import EasySpeechLibrary from "./components/EasySpeechLibrary";
 import Home from "./components/Home";
 
 export default function App() {
@@ -9,7 +9,7 @@ export default function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/builtIn" element={<BuiltIn />} />
-      <Route path="/easySpeech" element={<EasySpeech />} />
+      <Route path="/easySpeech" element={<EasySpeechLibrary />} />
     </Routes>
   );
 }

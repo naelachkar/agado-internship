@@ -62,9 +62,6 @@ export default function BuiltIn() {
           <li>Cross-browser support difficult</li>
           <li>Robotic voices</li>
           <li>TTS without user action disabled in Chrome</li>
-          <li>
-            Limited to 15 seconds by default in Chrome (workaround possible)
-          </li>
         </ul>
       </details>
     </>
