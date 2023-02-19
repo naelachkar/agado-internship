@@ -6,6 +6,7 @@ export default function Home() {
     <>
       <h1>Text-to-speech methods</h1>
       <button onClick={() => navigate("/builtIn")}>Built-in JavaScript</button>
+      <button onClick={() => navigate("/EasySpeech")}>JavaScript with Easy Speech library</button>
     </>
   );
 }
