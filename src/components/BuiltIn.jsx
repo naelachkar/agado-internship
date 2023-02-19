@@ -50,6 +50,23 @@ export default function BuiltIn() {
           ))}
         </select>
       )}
+      <details>
+        <summary>Pros & Cons</summary>
+        <h4>Pros</h4>
+        <ul>
+          <li>No need for libraries or APIs</li>
+          <li>Light solution</li>
+        </ul>
+        <h4>Cons</h4>
+        <ul>
+          <li>Cross-browser support difficult</li>
+          <li>Robotic voices</li>
+          <li>TTS without user action disabled in Chrome</li>
+          <li>
+            Limited to 15 seconds by default in Chrome (workaround possible)
+          </li>
+        </ul>
+      </details>
     </>
   );
 }
