@@ -37,7 +37,7 @@ export default function BuiltIn() {
   return (
     <>
       <h1>Built-in JavaScript</h1>
-      <div>
+      <div className="flex">
         <textarea onChange={(e) => setText(e.target.value)}></textarea>
         <button onClick={textToSpeech}>Speak</button>
       </div>
