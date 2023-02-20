@@ -17,6 +17,8 @@ export default function DetectOS({ voiceList }) {
       : window.navigator.userAgent.includes("Macintosh")
       ? (OS = "MacOS")
       : (OS = "undefined");
+  } else {
+    return;
   }
 
   return (
@@ -26,7 +28,8 @@ export default function DetectOS({ voiceList }) {
         <div>
           <a
             href="https://support.microsoft.com/en-gb/topic/download-languages-and-voices-for-immersive-reader-read-mode-and-read-aloud-4c83a8d8-7486-42f7-8e46-2b0fdf753130"
-            target="_blank">
+            target="_blank"
+          >
             Learn how to install voices on {OS}
           </a>
         </div>
