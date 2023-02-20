@@ -45,7 +45,7 @@ export default function BuiltIn() {
         <select onChange={(e) => setVoiceIndex(e.target.value)}>
           {voiceList.map((voice, index) => (
             <option key={voice.voiceURI} value={index}>
-              {voice.name}
+              {voice.lang} - {voice.name}
             </option>
           ))}
         </select>
