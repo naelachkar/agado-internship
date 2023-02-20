@@ -26,7 +26,7 @@ export default function EasySpeechLibrary() {
       <h1>Easy Speech library</h1>
       <div className="flex">
         <textarea onChange={(e) => setText(e.target.value)}></textarea>
-        <button onClick={textToSpeech}>Speak</button>
+        <button onClick={textToSpeech} disabled={!voiceList ? true : false}>Speak</button>
       </div>
       {voiceList?.length > 0 && (
         <select onChange={(e) => setVoiceIndex(e.target.value)}>
@@ -37,6 +37,10 @@ export default function EasySpeechLibrary() {
           ))}
         </select>
       )}
+      {!voiceList &&
+        (<div>You don't have any voice installed on your device.</div>)
+      }
+      {alert(window.navigator.userAgent)}
       <details>
         <summary>Pros & Cons</summary>
         <h4>Pros</h4>
