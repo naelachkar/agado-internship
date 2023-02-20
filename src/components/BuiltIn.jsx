@@ -56,12 +56,13 @@ export default function BuiltIn() {
         <ul>
           <li>No need for libraries or APIs</li>
           <li>Light solution</li>
+          <li>Works offline</li>
         </ul>
         <h4>Cons</h4>
         <ul>
           <li>Cross-browser support difficult</li>
           <li>Robotic voices</li>
-          <li>TTS without user action disabled in Chrome</li>
+          <li>TTS without user action disabled in Chrome (TBC)</li>
         </ul>
       </details>
     </>

@@ -12,6 +12,7 @@ export default function Home() {
         <button onClick={() => navigate("/EasySpeech")}>
           JavaScript with Easy Speech library
         </button>
+        <button onClick={() => navigate("/Paid")}>Paid Services</button>
       </div>
     </>
   );

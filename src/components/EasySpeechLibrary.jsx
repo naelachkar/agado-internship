@@ -43,6 +43,7 @@ export default function EasySpeechLibrary() {
         <ul>
           <li>Easier to implement</li>
           <li>Cross-browser support including mobile</li>
+          <li>Works offline</li>
         </ul>
         <h4>Cons</h4>
         <ul>
