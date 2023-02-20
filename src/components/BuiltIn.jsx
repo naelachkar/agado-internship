@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import DetectOS from "./DetectOS";
 
 export default function BuiltIn() {
   const [text, setText] = useState();
@@ -50,6 +51,7 @@ export default function BuiltIn() {
           ))}
         </select>
       )}
+      <DetectOS voiceList={voiceList} />
       <details>
         <summary>Pros & Cons</summary>
         <h4>Pros</h4>

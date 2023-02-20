@@ -1,5 +1,6 @@
 import EasySpeech from "easy-speech";
 import { useEffect, useState } from "react";
+import DetectOS from "./DetectOS";
 
 export default function EasySpeechLibrary() {
   const [text, setText] = useState();
@@ -26,7 +27,9 @@ export default function EasySpeechLibrary() {
       <h1>Easy Speech library</h1>
       <div className="flex">
         <textarea onChange={(e) => setText(e.target.value)}></textarea>
-        <button onClick={textToSpeech} disabled={!voiceList ? true : false}>Speak</button>
+        <button onClick={textToSpeech} disabled={!voiceList ? true : false}>
+          Speak
+        </button>
       </div>
       {voiceList?.length > 0 && (
         <select onChange={(e) => setVoiceIndex(e.target.value)}>
@@ -37,10 +40,7 @@ export default function EasySpeechLibrary() {
           ))}
         </select>
       )}
-      {!voiceList &&
-        (<div>You don't have any voice installed on your device.</div>)
-      }
-      {alert(window.navigator.userAgent)}
+      <DetectOS voiceList={voiceList} />
       <details>
         <summary>Pros & Cons</summary>
         <h4>Pros</h4>
@@ -56,8 +56,7 @@ export default function EasySpeechLibrary() {
         </ul>
         <a
           target="_blank"
-          href="https://dev.to/jankapunkt/cross-browser-speech-synthesis-the-hard-way-and-the-easy-way-353"
-        >
+          href="https://dev.to/jankapunkt/cross-browser-speech-synthesis-the-hard-way-and-the-easy-way-353">
           Explanations
         </a>
         <br />
