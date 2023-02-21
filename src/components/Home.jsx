@@ -14,6 +14,8 @@ export default function Home() {
         </button>
         <button onClick={() => navigate("/Paid")}>Paid Services</button>
       </div>
+      <h1>Speech-to-text</h1>
+      <button onClick={() => navigate("/RSR")}>Paid Services</button>
     </>
   );
 }
