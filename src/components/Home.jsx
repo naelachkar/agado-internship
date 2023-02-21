@@ -15,7 +15,7 @@ export default function Home() {
         <button onClick={() => navigate("/Paid")}>Paid Services</button>
       </div>
       <h1>Speech-to-text</h1>
-      <button onClick={() => navigate("/RSR")}>Paid Services</button>
+      <button onClick={() => navigate("/RSR")}>React Speech Recognition Library</button>
     </>
   );
 }
