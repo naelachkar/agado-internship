@@ -4,8 +4,6 @@ export default function DetectOS({ voiceList }) {
   if (!voiceList || voiceList?.length === 0) {
     window.navigator.userAgent.includes("Android")
       ? (OS = "Android")
-      : window.navigator.userAgent.includes("Windows Phone")
-      ? (OS = "Windows Phone")
       : window.navigator.userAgent.includes("Windows")
       ? (OS = "Windows")
       : window.navigator.userAgent.includes("iPhone")
@@ -14,7 +12,7 @@ export default function DetectOS({ voiceList }) {
       ? (OS = "Linux")
       : window.navigator.userAgent.includes("CrOS")
       ? (OS = "ChromeOS")
-      : window.navigator.userAgent.includes("Macintosh")
+      : window.navigator.userAgent.includes("Mac")
       ? (OS = "MacOS")
       : (OS = "undefined");
   } else {
@@ -33,7 +31,7 @@ export default function DetectOS({ voiceList }) {
             Learn how to install voices on {OS}
           </a>
         </div>
-      ) : OS === "Macintosh" ? (
+      ) : OS === "Mac" ? (
         <div>
           <a href="https://support.apple.com/guide/mac-help/change-the-voice-your-mac-uses-to-speak-text-mchlp2290/mac">
             Learn how to install voices on {OS}
