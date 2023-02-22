@@ -1,0 +1,13 @@
+.test {
+    height: 50px;
+    background-color: red;
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    place-content: center;
+    border-radius: 8px;
+}
+
+[hidden]{
+    display:none;
+  }
