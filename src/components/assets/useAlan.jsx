@@ -9,17 +9,25 @@ const COMMANDS = {
 
 export default function useAlan() {
   const [alanInstance, setAlanInstance] = useState();
-  const { setBool } = useBoxContext();
+  const { bool, setBool } = useBoxContext();
 
   const openBox = useCallback(() => {
-    alanInstance.playText("Opening the box");
-    setBool(false);
-  }, [alanInstance]);
+    if (!bool) {
+      alanInstance.playText("Box already open");
+    } else {
+      alanInstance.playText("Opening the box");
+      setBool(false);
+    }
+  }, [alanInstance, bool, setBool]);
 
   const closeBox = useCallback(() => {
-    alanInstance.playText("Closing the box");
-    setBool(true);
-  }, [alanInstance]);
+    if (bool) {
+      alanInstance.playText("Box already closed");
+    } else {
+      alanInstance.playText("Closing the box");
+      setBool(true);
+    }
+  }, [alanInstance, bool, setBool]);
 
   useEffect(() => {
     window.addEventListener(COMMANDS.OPEN_BOX, openBox);
@@ -29,7 +37,7 @@ export default function useAlan() {
       window.removeEventListener(COMMANDS.OPEN_BOX, openBox);
       window.removeEventListener(COMMANDS.CLOSE_BOX, closeBox);
     };
-  }, [openBox]);
+  }, [openBox, closeBox]);
 
   useEffect(() => {
     if (alanInstance != null) return;
