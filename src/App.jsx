@@ -1,11 +1,11 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import Alan from "./components/Alan";
-import BuiltIn from "./components/BuiltIn";
-import EasySpeechLibrary from "./components/EasySpeechLibrary";
+import Alan from "./components/Voice Assistant/Alan";
+import BuiltIn from "./components/TTS/BuiltIn";
+import EasySpeechLibrary from "./components/TTS/EasySpeechLibrary";
 import Home from "./components/Home";
-import Paid from "./components/Paid";
-import RSR from "./components/RSR";
+import Paid from "./components/TTS/Paid";
+import RSR from "./components/Voice Assistant/RSR";
 
 export default function App() {
   return (

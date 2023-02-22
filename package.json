@@ -10,6 +10,7 @@
     "host": "vite --host"
   },
   "dependencies": {
+    "@alan-ai/alan-sdk-web": "^1.8.42",
     "easy-speech": "^1.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

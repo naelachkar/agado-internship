@@ -1,6 +1,6 @@
 import EasySpeech from "easy-speech";
 import { useEffect, useState } from "react";
-import DetectOS from "./DetectOS";
+import DetectOS from "../assets/DetectOS";
 
 export default function EasySpeechLibrary() {
   const [text, setText] = useState();

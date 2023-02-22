@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import DetectOS from "./DetectOS";
+import DetectOS from "../assets/DetectOS";
 
 export default function BuiltIn() {
   const [text, setText] = useState();
