@@ -1,11 +1,11 @@
 import { useState } from "react";
 import "./Alan.css";
 import useAlan from "../assets/useAlan";
+import { useBoxContext } from "./BoxContext";
 
 export default function Alan() {
   useAlan();
-
-  const [bool, setBool] = useState(true);
+  const { bool, setBool } = useBoxContext();
 
   return (
     <>

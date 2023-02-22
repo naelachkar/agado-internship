@@ -1,5 +1,6 @@
 import alanBtn from "@alan-ai/alan-sdk-web";
 import { useCallback, useEffect, useState } from "react";
+import { useBoxContext } from "../Voice Assistant/BoxContext";
 
 const COMMANDS = {
   OPEN_BOX: "open-box",
@@ -7,6 +8,7 @@ const COMMANDS = {
 
 export default function useAlan() {
   const [alanInstance, setAlanInstance] = useState();
+  const { bool, setBool } = useBoxContext();
 
   const openBox = useCallback(() => {
     alanInstance.playText("Opening the box");
