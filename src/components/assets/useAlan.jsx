@@ -5,11 +5,13 @@ import { useBoxContext } from "../Voice Assistant/BoxContext";
 const COMMANDS = {
   OPEN_BOX: "open-box",
   CLOSE_BOX: "close-box",
+  CHANGE_BACKGROUND: "change-background",
 };
 
 export default function useAlan() {
   const [alanInstance, setAlanInstance] = useState();
-  const { bool, setBool } = useBoxContext();
+  const { bool, setBool, backgroundColor, setBackgroundColor } =
+    useBoxContext();
 
   const openBox = useCallback(() => {
     if (!bool) {
@@ -29,15 +31,25 @@ export default function useAlan() {
     }
   }, [alanInstance, bool, setBool]);
 
+  const changeBackground = useCallback(
+    ({ detail: { color } }) => {
+      alanInstance.playText(`Changing the background color to ${color}`);
+      setBackgroundColor(`${color}`);
+    },
+    [alanInstance, backgroundColor, setBackgroundColor]
+  );
+
   useEffect(() => {
     window.addEventListener(COMMANDS.OPEN_BOX, openBox);
     window.addEventListener(COMMANDS.CLOSE_BOX, closeBox);
+    window.addEventListener(COMMANDS.CHANGE_BACKGROUND, changeBackground);
 
     return () => {
       window.removeEventListener(COMMANDS.OPEN_BOX, openBox);
       window.removeEventListener(COMMANDS.CLOSE_BOX, closeBox);
+      window.removeEventListener(COMMANDS.CHANGE_BACKGROUND, changeBackground);
     };
-  }, [openBox, closeBox]);
+  }, [openBox, closeBox, changeBackground]);
 
   useEffect(() => {
     if (alanInstance != null) return;
@@ -46,8 +58,8 @@ export default function useAlan() {
         top: "20px",
         left: "20px",
         key: import.meta.env.VITE_ALAN_KEY,
-        onCommand: ({ command }) => {
-          window.dispatchEvent(new CustomEvent(command));
+        onCommand: ({ command, payload }) => {
+          window.dispatchEvent(new CustomEvent(command, { detail: payload }));
         },
       })
     );

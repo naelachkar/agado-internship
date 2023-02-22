@@ -8,14 +8,24 @@ export default function Alan() {
   const { bool, setBool } = useBoxContext();
 
   return (
-    <>
+    <div>
       <h1>Alan Demo</h1>
+      <p>Use the button below or ask Alan to open or close the box</p>
       <button onClick={() => setBool(!bool)}>
         {bool ? "Open" : "Close"} the Box
       </button>
       <div className="test" hidden={bool}>
         <span>I'm open 👋</span>
       </div>
-    </>
+      <p>You can also ask Alan to change the page background color to:</p>
+      <ul>
+        <li>Red</li>
+        <li>Blue</li>
+        <li>Green</li>
+        <li>White</li>
+        <li>Orange</li>
+        <li>Purple</li>
+      </ul>
+    </div>
   );
 }

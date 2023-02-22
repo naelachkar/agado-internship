@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const BoxContext = createContext();
 
@@ -8,6 +8,18 @@ export function useBoxContext() {
 
 export default function BoxContextWrapper({ children }) {
   const [bool, setBool] = useState(true);
+  const [backgroundColor, setBackgroundColor] = useState("white");
 
-  return <BoxContext.Provider value={{bool, setBool}}>{children}</BoxContext.Provider>;
+  useEffect(() => {
+    document.body.style = `background: ${backgroundColor.toLowerCase()}`;
+  }, [backgroundColor])
+
+  const values = {
+    bool,
+    setBool,
+    backgroundColor,
+    setBackgroundColor,
+  };
+
+  return <BoxContext.Provider value={values}>{children}</BoxContext.Provider>;
 }

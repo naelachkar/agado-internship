@@ -1,7 +1,7 @@
 .test {
     height: 50px;
-    background-color: red;
-    color: white;
+    background-color: lightgreen;
+    color: black;
     display: flex;
     flex-wrap: wrap;
     place-content: center;
