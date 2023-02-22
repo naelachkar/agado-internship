@@ -52,6 +52,12 @@ export default function useAlan() {
   }, [openBox, closeBox, changeBackground]);
 
   useEffect(() => {
+    return () => {
+      alanInstance?.remove();
+    };
+  }, []);
+
+  useEffect(() => {
     if (alanInstance != null) return;
     setAlanInstance(
       alanBtn({
