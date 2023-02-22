@@ -4,21 +4,30 @@ import { useBoxContext } from "../Voice Assistant/BoxContext";
 
 const COMMANDS = {
   OPEN_BOX: "open-box",
+  CLOSE_BOX: "close-box",
 };
 
 export default function useAlan() {
   const [alanInstance, setAlanInstance] = useState();
-  const { bool, setBool } = useBoxContext();
+  const { setBool } = useBoxContext();
 
   const openBox = useCallback(() => {
     alanInstance.playText("Opening the box");
+    setBool(false);
+  }, [alanInstance]);
+
+  const closeBox = useCallback(() => {
+    alanInstance.playText("Closing the box");
+    setBool(true);
   }, [alanInstance]);
 
   useEffect(() => {
     window.addEventListener(COMMANDS.OPEN_BOX, openBox);
+    window.addEventListener(COMMANDS.CLOSE_BOX, closeBox);
 
     return () => {
       window.removeEventListener(COMMANDS.OPEN_BOX, openBox);
+      window.removeEventListener(COMMANDS.CLOSE_BOX, closeBox);
     };
   }, [openBox]);
 
