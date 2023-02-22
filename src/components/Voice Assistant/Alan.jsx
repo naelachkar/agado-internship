@@ -4,7 +4,7 @@ import useAlan from "../assets/useAlan";
 import { useBoxContext } from "./BoxContext";
 
 export default function Alan() {
-  useAlan();
+  // useAlan();
   const { bool, setBool } = useBoxContext();
 
   return (
