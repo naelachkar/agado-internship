@@ -11,8 +11,12 @@ export default function BoxContextWrapper({ children }) {
   const [backgroundColor, setBackgroundColor] = useState("white");
 
   useEffect(() => {
-    document.body.style = `background: ${backgroundColor.toLowerCase()}`;
-  }, [backgroundColor])
+    if (backgroundColor.toLowerCase() === "black") {
+      document.body.style = `background: ${backgroundColor.toLowerCase()}; color: white`;
+      return;
+    }
+    document.body.style = `background: ${backgroundColor.toLowerCase()}; color: #213547`;
+  }, [backgroundColor]);
 
   const values = {
     bool,

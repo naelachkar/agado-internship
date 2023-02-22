@@ -14,7 +14,7 @@ export default function Alan() {
       <button onClick={() => setBool(!bool)}>
         {bool ? "Open" : "Close"} the Box
       </button>
-      <div className="test" hidden={bool}>
+      <div className="test" style={{ visibility: bool ? "hidden" : "visible"}}>
         <span>I'm open 👋</span>
       </div>
       <p>You can also ask Alan to change the page background color to:</p>
@@ -25,6 +25,8 @@ export default function Alan() {
         <li>White</li>
         <li>Orange</li>
         <li>Purple</li>
+        <li>Pink</li>
+        <li>Black</li>
       </ul>
     </div>
   );
