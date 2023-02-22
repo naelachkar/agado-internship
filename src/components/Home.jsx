@@ -14,8 +14,11 @@ export default function Home() {
         </button>
         <button onClick={() => navigate("/Paid")}>Paid Services</button>
       </div>
-      <h1>Speech-to-text</h1>
-      <button onClick={() => navigate("/RSR")}>React Speech Recognition Library</button>
+      <h1>Voice activation</h1>
+      <div className="flex column">
+        <button onClick={() => navigate("/RSR")}>React Speech Recognition Library</button>
+        <button onClick={() => navigate("/Alan")}>Alan Demo</button>
+      </div>
     </>
   );
 }
