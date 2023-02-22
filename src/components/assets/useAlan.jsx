@@ -10,7 +10,7 @@ const COMMANDS = {
 
 export default function useAlan() {
   const [alanInstance, setAlanInstance] = useState();
-  const { bool, setBool, backgroundColor, setBackgroundColor } =
+  const { bool, setBool, backgroundColor, setBackgroundColor, customTTS, setcustomTTS } =
     useBoxContext();
 
   const openBox = useCallback(() => {
@@ -38,6 +38,16 @@ export default function useAlan() {
     },
     [alanInstance, backgroundColor, setBackgroundColor]
   );
+
+  const sayHello = useCallback(() => {
+    alanInstance.activate();
+    alanInstance.playText("Hello my name is Alan. This is a demo of my voice.");
+  }, [alanInstance])
+
+  const alanTTS = useCallback(() => {
+    alanInstance.activate();
+    alanInstance.playText(customTTS);
+  }, [alanInstance, customTTS, setcustomTTS])
 
   useEffect(() => {
     window.addEventListener(COMMANDS.OPEN_BOX, openBox);
@@ -71,5 +81,5 @@ export default function useAlan() {
     );
   }, []);
 
-  return null;
+  return {sayHello, alanTTS};
 }

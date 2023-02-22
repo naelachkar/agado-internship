@@ -9,6 +9,7 @@ export function useBoxContext() {
 export default function BoxContextWrapper({ children }) {
   const [bool, setBool] = useState(true);
   const [backgroundColor, setBackgroundColor] = useState("white");
+  const [customTTS, setCustomTTS] = useState("");
 
   useEffect(() => {
     if (backgroundColor.toLowerCase() === "black") {
@@ -23,6 +24,8 @@ export default function BoxContextWrapper({ children }) {
     setBool,
     backgroundColor,
     setBackgroundColor,
+    customTTS,
+    setCustomTTS,
   };
 
   return <BoxContext.Provider value={values}>{children}</BoxContext.Provider>;

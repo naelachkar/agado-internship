@@ -4,8 +4,8 @@ import useAlan from "../assets/useAlan";
 import { useBoxContext } from "./BoxContext";
 
 export default function Alan() {
-  // useAlan();
-  const { bool, setBool } = useBoxContext();
+  const {sayHello, alanTTS} = useAlan();
+  const { bool, setBool, setCustomTTS } = useBoxContext();
 
   return (
     <div className="container">
@@ -37,6 +37,11 @@ export default function Alan() {
         <li>Pink</li>
         <li>Black</li>
       </ul>
+      <p>Click on the button bellow to hear Alan say hello.</p>
+      <button onClick={sayHello}>👋</button>
+      <p>Alan can also pronounce sentences for you:</p>
+      <textarea onChange={(e) => setCustomTTS(e.target.value)}></textarea>
+      <button onClick={alanTTS}>Speak</button>
     </div>
   );
 }
