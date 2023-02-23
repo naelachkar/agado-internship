@@ -41,9 +41,6 @@ export default function Alan2() {
     textToSpeech: function () {
       alanInstance.current.activate();
       alanInstance.current.playText(ttsText);
-      setTimeout(() => {
-        console.log(alanState.current);
-      }, [1000]);
     },
   };
 
