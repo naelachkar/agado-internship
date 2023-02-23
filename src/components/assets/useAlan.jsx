@@ -3,9 +3,9 @@ import { useCallback, useEffect, useState } from "react";
 import { useBoxContext } from "../Voice Assistant/BoxContext";
 
 const COMMANDS = {
-  OPEN_BOX: "open-box",
-  CLOSE_BOX: "close-box",
-  CHANGE_BACKGROUND: "change-background",
+  OPEN_BOX: "openBox",
+  CLOSE_BOX: "closeBox",
+  CHANGE_BACKGROUND: "changeBackground",
 };
 
 export default function useAlan() {
