@@ -9,6 +9,7 @@ import RSR from "./components/Voice Assistant/RSR";
 import Alan2 from "./components/Voice Assistant/Alan2";
 import Avatar from "./components/avatar/avatar";
 import Three from "./components/avatar/three";
+import Mannequin from "./components/avatar/Mannequin";
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
       <Route path="/Alan2" element={<Alan2 />} />
       <Route path="/avatar" element={<Avatar />} />
       <Route path="/three" element={<Three />} />
+      <Route path="/mannequin" element={<Mannequin />} />
     </Routes>
   );
 }
