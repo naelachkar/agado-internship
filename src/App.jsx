@@ -6,11 +6,10 @@ import EasySpeechLibrary from "./components/TTS/EasySpeechLibrary";
 import Home from "./components/Home";
 import Paid from "./components/TTS/Paid";
 import RSR from "./components/Voice Assistant/RSR";
-// import useAlan from "./components/assets/useAlan";
 import Alan2 from "./components/Voice Assistant/Alan2";
+import Avatar from "./components/avatar/avatar";
 
 export default function App() {
-  // useAlan();
   return (
     <Routes>
       <Route path="/" element={<Home />} />
@@ -20,6 +19,7 @@ export default function App() {
       <Route path="/RSR" element={<RSR />} />
       <Route path="/Alan" element={<Alan />} />
       <Route path="/Alan2" element={<Alan2 />} />
+      <Route path="/avatar" element={<Avatar />} />
     </Routes>
   );
 }
