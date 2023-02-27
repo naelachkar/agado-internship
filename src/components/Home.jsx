@@ -26,6 +26,9 @@ export default function Home() {
       <div className="flex column">
         <button onClick={() => navigate("/avatar")}>Avatar Demo</button>
       </div>
+      <div className="flex column">
+        <button onClick={() => navigate("/three")}>Three.js</button>
+      </div>
     </>
   );
 }
