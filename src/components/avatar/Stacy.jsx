@@ -20,10 +20,6 @@ export default function Stacy(props) {
           target="_blank">
           Source
         </a>
-        <p>
-          To have a custom character and custom animations, a dedicated 3D
-          animation software such as Blender or Autodesk Maya is needed.
-        </p>
       </div>
     </div>
   );
