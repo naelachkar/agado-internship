@@ -1,10 +1,8 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import StacyScript from "./StacyScript";
-import "./StacyStyle.css"
+import "./StacyStyle.css";
 
 export default function Stacy(props) {
-  const canvas = useRef();
-
   useEffect(() => {
     StacyScript();
   }, []);
@@ -12,8 +10,9 @@ export default function Stacy(props) {
   return (
     <div className="flex column">
       <h1>Stacy</h1>
+      <p>Click on Stacy to see an animation.</p>
       <div id="wrapper">
-          <canvas ref={canvas} id="c"></canvas>
+        <canvas id="c"></canvas>
       </div>
       <div>
         <a
@@ -21,6 +20,10 @@ export default function Stacy(props) {
           target="_blank">
           Source
         </a>
+        <p>
+          To have a custom character and custom animations, a dedicated 3D
+          animation software such as Blender or Autodesk Maya is needed.
+        </p>
       </div>
     </div>
   );

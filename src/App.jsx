@@ -7,7 +7,6 @@ import Paid from "./components/TTS/Paid";
 import RSR from "./components/Voice Assistant/RSR";
 import Alan2 from "./components/Voice Assistant/Alan2";
 import Avatar from "./components/avatar/avatar";
-import Three from "./components/avatar/three";
 import Stacy from "./components/avatar/Stacy";
 
 export default function App() {
@@ -20,7 +19,6 @@ export default function App() {
       <Route path="/RSR" element={<RSR />} />
       <Route path="/Alan" element={<Alan2 />} />
       <Route path="/avatar" element={<Avatar />} />
-      <Route path="/three" element={<Three />} />
       <Route path="/Stacy" element={<Stacy />} />
     </Routes>
   );
