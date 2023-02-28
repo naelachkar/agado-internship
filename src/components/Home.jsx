@@ -20,6 +20,7 @@ export default function Home() {
           React Speech Recognition Library
         </button>
         <button onClick={() => navigate("/Alan")}>Alan Demo</button>
+        <button onClick={() => navigate("/CloudGoogle")}>Cloud Google</button>
       </div>
       <h1>Avatars</h1>
       <div className="flex column">
