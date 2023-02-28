@@ -19,8 +19,7 @@ export default function Home() {
         <button onClick={() => navigate("/RSR")}>
           React Speech Recognition Library
         </button>
-        {/* <button onClick={() => navigate("/Alan")}>Alan Demo</button> */}
-        <button onClick={() => navigate("/Alan2")}>Alan Demo 2</button>
+        <button onClick={() => navigate("/Alan")}>Alan Demo</button>
       </div>
       <h1>Avatars</h1>
       <div className="flex column">

@@ -1,9 +1,18 @@
+import { useEffect, useRef } from "react";
+import StacyScript from "./StacyScript";
+
 export default function Stacy(props) {
+  const canvas = useRef();
+
+  useEffect(() => {
+    StacyScript();
+  }, []);
+
   return (
-    <>
+    <div className="flex column">
       <h1>Stacy</h1>
       <div className="wrapper">
-        <canvas id="c"></canvas>
+        <canvas ref={canvas} id="c"></canvas>
       </div>
       <div>
         <a
@@ -12,6 +21,6 @@ export default function Stacy(props) {
           Source
         </a>
       </div>
-    </>
+    </div>
   );
 }

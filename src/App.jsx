@@ -1,6 +1,5 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-// import Alan from "./components/Voice Assistant/Alan";
 import BuiltIn from "./components/TTS/BuiltIn";
 import EasySpeechLibrary from "./components/TTS/EasySpeechLibrary";
 import Home from "./components/Home";
@@ -19,8 +18,7 @@ export default function App() {
       <Route path="/easySpeech" element={<EasySpeechLibrary />} />
       <Route path="/Paid" element={<Paid />} />
       <Route path="/RSR" element={<RSR />} />
-      {/* <Route path="/Alan" element={<Alan />} /> */}
-      <Route path="/Alan2" element={<Alan2 />} />
+      <Route path="/Alan" element={<Alan2 />} />
       <Route path="/avatar" element={<Avatar />} />
       <Route path="/three" element={<Three />} />
       <Route path="/Stacy" element={<Stacy />} />
