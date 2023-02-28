@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import StacyScript from "./StacyScript";
+import "./StacyStyle.css"
 
 export default function Stacy(props) {
   const canvas = useRef();

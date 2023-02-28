@@ -190,8 +190,9 @@ function StacyScript() {
     return needResize;
   }
 
-  window.addEventListener("click", (e) => raycast(e));
-  window.addEventListener("touchend", (e) => raycast(e, true));
+  const wrapper = document.getElementById("wrapper");
+  wrapper.addEventListener("click", (e) => raycast(e));
+  wrapper.addEventListener("touchend", (e) => raycast(e, true));
 
   function raycast(e, touch = false) {
     var mouse = {};
@@ -238,7 +239,7 @@ function StacyScript() {
     }, to._clip.duration * 1000 - (tSpeed + fSpeed) * 1000);
   }
 
-  document.addEventListener("mousemove", function (e) {
+  wrapper.addEventListener("mousemove", function (e) {
     var mousecoords = getMousePos(e);
     if (neck && waist) {
       moveJoint(mousecoords, neck, 50);
