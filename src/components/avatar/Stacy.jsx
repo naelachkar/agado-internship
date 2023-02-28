@@ -11,8 +11,8 @@ export default function Stacy(props) {
   return (
     <div className="flex column">
       <h1>Stacy</h1>
-      <div className="wrapper">
-        <canvas ref={canvas} id="c"></canvas>
+      <div id="wrapper">
+          <canvas ref={canvas} id="c"></canvas>
       </div>
       <div>
         <a

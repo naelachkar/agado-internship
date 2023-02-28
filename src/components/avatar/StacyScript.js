@@ -11,8 +11,8 @@ function StacyScript() {
     idle, // Idle, the default state our character returns to
     clock = new THREE.Clock(), // Used for anims, which run to a clock instead of frame rate
     currentlyAnimating = false, // Used to check whether characters neck is being used in another anim
-    raycaster = new THREE.Raycaster(), // Used to detect the click on our character
-    loaderAnim = document.getElementById("js-loader");
+    raycaster = new THREE.Raycaster(); // Used to detect the click on our character
+  // loaderAnim = document.getElementById("js-loader")
 
   init();
 
@@ -31,7 +31,9 @@ function StacyScript() {
     renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
     renderer.shadowMap.enabled = true;
     renderer.setPixelRatio(window.devicePixelRatio);
-    document.body.appendChild(renderer.domElement);
+
+    const wrapper = document.getElementById("wrapper");
+    wrapper.appendChild(renderer.domElement);
 
     // Add a camera
     camera = new THREE.PerspectiveCamera(
