@@ -32,6 +32,9 @@ export default function Home() {
       <div className="flex column">
         <button onClick={() => navigate("/mannequin")}>Mannequin.js</button>
       </div>
+      <div className="flex column">
+        <button onClick={() => navigate("/Stacy")}>Stacy</button>
+      </div>
     </>
   );
 }

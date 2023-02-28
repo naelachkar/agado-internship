@@ -10,6 +10,7 @@ import Alan2 from "./components/Voice Assistant/Alan2";
 import Avatar from "./components/avatar/avatar";
 import Three from "./components/avatar/three";
 import Mannequin from "./components/avatar/Mannequin";
+import Stacy from "./components/avatar/Stacy";
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
       <Route path="/avatar" element={<Avatar />} />
       <Route path="/three" element={<Three />} />
       <Route path="/mannequin" element={<Mannequin />} />
+      <Route path="/Stacy" element={<Stacy />} />
     </Routes>
   );
 }
