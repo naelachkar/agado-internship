@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import bodyImage from "../assets/body.png"
+// import bodyImage from "../assets/body.png"
 
 export default function Avatar() {
   const coordinates = [

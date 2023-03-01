@@ -1,3 +1,5 @@
+import img from "../assets/AgadoStacy.jpeg";
+
 function StacyScript() {
   // Set our main variables
   let scene,
@@ -45,10 +47,7 @@ function StacyScript() {
     camera.position.x = 0;
     camera.position.y = -3;
 
-    let stacy_txt = new THREE.TextureLoader().load(
-      "/AgadoStacy.jpeg"
-      //   "https://s3-us-west-2.amazonaws.com/s.cdpn.io/1376484/stacy.jpg"
-    );
+    let stacy_txt = new THREE.TextureLoader().load(img);
 
     stacy_txt.flipY = false; // we flip the texture so that its the right way up
 
