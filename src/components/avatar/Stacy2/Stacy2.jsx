@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import StacyScript2 from "./StacyScript2";
-import "./StacyStyle.css";
+import "../StacyStyle.css";
 
 export default function Stacy2() {
   useEffect(() => {

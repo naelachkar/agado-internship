@@ -6,9 +6,9 @@ import Home from "./components/Home";
 import Paid from "./components/TTS/Paid";
 import RSR from "./components/Voice Assistant/RSR";
 import Alan2 from "./components/Voice Assistant/Alan2";
-import Stacy from "./components/avatar/Stacy";
 import CloudGoogle from "./components/Voice Assistant/CloudGoogle";
-import Stacy2 from "./components/avatar/Stacy2";
+import Stacy2 from "./components/avatar/Stacy2/Stacy2";
+import Stacy from "./components/avatar/Stacy/Stacy";
 
 export default function App() {
   return (

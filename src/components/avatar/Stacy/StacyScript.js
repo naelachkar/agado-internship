@@ -1,4 +1,4 @@
-import img from "../assets/AgadoStacy.jpeg";
+import img from "../../assets/AgadoStacy.jpeg";
 
 function StacyScript() {
   // Set our main variables
