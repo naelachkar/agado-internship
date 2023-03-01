@@ -24,8 +24,8 @@ export default function Home() {
       </div>
       <h1>Avatars</h1>
       <div className="flex column">
-        <button onClick={() => navigate("/avatar")}>Avatar Demo</button>
         <button onClick={() => navigate("/Stacy")}>Stacy</button>
+        <button onClick={() => navigate("/Stacy2")}>Stacy Test</button>
       </div>
     </>
   );

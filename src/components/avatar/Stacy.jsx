@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import StacyScript from "./StacyScript";
 import "./StacyStyle.css";
 
-export default function Stacy(props) {
+export default function Stacy() {
   useEffect(() => {
     StacyScript();
   }, []);
@@ -10,7 +10,6 @@ export default function Stacy(props) {
   return (
     <div className="flex column">
       <h1>Stacy</h1>
-      <p>Click on Stacy to see an animation.</p>
       <div id="wrapper">
         <canvas id="c"></canvas>
       </div>
