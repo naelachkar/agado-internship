@@ -1,9 +1,11 @@
 import { useNavigate } from "react-router-dom";
+import Navbar from "./avatar/Navbar";
 
 export default function Home() {
   const navigate = useNavigate();
   return (
     <>
+    <Navbar />
       <h1>Text-to-speech methods</h1>
       <div className="flex column">
         <button onClick={() => navigate("/builtIn")}>

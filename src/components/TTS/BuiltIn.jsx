@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import DetectOS from "../assets/DetectOS";
+import Navbar from "../avatar/Navbar";
 
 export default function BuiltIn() {
   const [text, setText] = useState();
@@ -37,6 +38,7 @@ export default function BuiltIn() {
 
   return (
     <>
+    <Navbar />
       <h1>Built-in JavaScript</h1>
       <div className="flex">
         <textarea onChange={(e) => setText(e.target.value)}></textarea>

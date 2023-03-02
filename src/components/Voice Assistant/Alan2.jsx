@@ -1,5 +1,6 @@
 import alanBtn from "@alan-ai/alan-sdk-web";
 import { useEffect, useRef, useState } from "react";
+import Navbar from "../avatar/Navbar";
 
 export default function Alan2() {
   const [bool, setBool] = useState(true);
@@ -62,6 +63,8 @@ export default function Alan2() {
   }, []);
 
   return (
+    <>
+    <Navbar />
     <div className="container">
       <h1>Alan Demo 2</h1>
       <p>
@@ -97,5 +100,6 @@ export default function Alan2() {
       <textarea onChange={(e) => setTtsText(e.target.value)}></textarea>
       <button onClick={commands.textToSpeech}>Speak</button>
     </div>
+    </>
   );
 }

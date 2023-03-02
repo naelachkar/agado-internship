@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import StacyScript from "./StacyScript";
 import "../StacyStyle.css";
+import Navbar from "../Navbar";
 
 export default function Stacy() {
   useEffect(() => {
@@ -8,6 +9,8 @@ export default function Stacy() {
   }, []);
 
   return (
+    <>
+    <Navbar />
     <div className="flex column">
       <h1>Stacy</h1>
       <div id="wrapper">
@@ -21,5 +24,6 @@ export default function Stacy() {
         </a>
       </div>
     </div>
+    </>
   );
 }

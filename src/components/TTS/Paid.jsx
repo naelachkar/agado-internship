@@ -1,6 +1,9 @@
+import Navbar from "../avatar/Navbar";
+
 export default function Paid() {
   return (
     <>
+    <Navbar />
       <h1>Paid Services</h1>
       <h2>Some examples</h2>
       <h2>

@@ -1,6 +1,7 @@
 import EasySpeech from "easy-speech";
 import { useEffect, useState } from "react";
 import DetectOS from "../assets/DetectOS";
+import Navbar from "../avatar/Navbar";
 
 export default function EasySpeechLibrary() {
   const [text, setText] = useState();
@@ -24,6 +25,7 @@ export default function EasySpeechLibrary() {
 
   return (
     <>
+    <Navbar />
       <h1>Easy Speech library</h1>
       <div className="flex">
         <textarea onChange={(e) => setText(e.target.value)}></textarea>
