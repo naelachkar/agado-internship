@@ -59,7 +59,7 @@ export default class Stacy2 extends Component {
       MODEL_PATH,
       (gltf) => {
         this.model = gltf.scene;
-
+        const self = this;
         this.model.traverse((o) => {
           if (o.isMesh) {
             o.castShadow = true;
@@ -67,51 +67,51 @@ export default class Stacy2 extends Component {
             o.material = stacy_mtl;
           }
           if (o.isBone && o.name === "mixamorigNeck") {
-            this.neck = o;
+            self.neck = o;
           } else if (o.isBone && o.name === "mixamorigHead") {
-            this.head = o;
+            self.head = o;
           } else if (o.isBone && o.name === "mixamorigRightShoulder") {
-            this.right_shoulder = o;
+            self.right_shoulder = o;
           } else if (o.isBone && o.name === "mixamorigLeftShoulder") {
-            this.left_shoulder = o;
+            self.left_shoulder = o;
           } else if (o.isBone && o.name === "mixamorigRightArm") {
-            this.right_arm = o;
+            self.right_arm = o;
           } else if (o.isBone && o.name === "mixamorigRightForeArm") {
-            this.right_fore_arm = o;
+            self.right_fore_arm = o;
           } else if (o.isBone && o.name === "mixamorigLeftArm") {
-            this.left_arm = o;
+            self.left_arm = o;
           } else if (o.isBone && o.name === "mixamorigLeftForeArm") {
-            this.left_fore_arm = o;
+            self.left_fore_arm = o;
           } else if (o.isBone && o.name === "mixamorigRightHand") {
-            this.right_hand = o;
+            self.right_hand = o;
           } else if (o.isBone && o.name === "mixamorigLeftHand") {
-            this.left_hand = o;
+            self.left_hand = o;
           } else if (o.isBone && o.name === "mixamorigRightHandIndex4") {
-            this.right_hand_index_4 = o;
+            self.right_hand_index_4 = o;
           } else if (o.isBone && o.name === "mixamorigRightThumb4") {
-            this.right_thumb_4 = o;
-            this.right_thumb_4.removeFromParent();
+            self.right_thumb_4 = o;
+            self.right_thumb_4.removeFromParent();
             if (this.right_hand) {
               this.right_thumb_4.attach(this.right_hand);
               console.log("right_thumb_4 attached to right_hand");
             }
           } else if (o.isBone && o.name === "mixamorigLeftThumb4") {
-            this.left_thumb_4 = o;
-            this.left_thumb_4.removeFromParent();
+            self.left_thumb_4 = o;
+            self.left_thumb_4.removeFromParent();
             if (this.left_hand) {
-              this.left_thumb_4.attach(this.right_hand);
+              self.left_thumb_4.attach(this.right_hand);
               console.log("left_thumb_4 attached to right_hand");
             }
           } else if (o.isBone && o.name === "mixamorigRightLeg") {
-            this.right_leg = o;
+            self.right_leg = o;
           } else if (o.isBone && o.name === "mixamorigSpine1") {
-            this.spine_1 = o;
+            self.spine_1 = o;
           } else if (o.isBone && o.name === "mixamorigSpine2") {
-            this.spine_2 = o;
+            self.spine_2 = o;
           } else if (o.isBone && o.name === "mixamorigSpine") {
-            this.spine = o;
+            self.spine = o;
           } else if (o.isBone && o.name === "mixamorigHips") {
-            this.hips = o;
+            self.hips = o;
           }
         });
 
@@ -126,6 +126,9 @@ export default class Stacy2 extends Component {
         const skeletonHelper = new THREE.SkeletonHelper(this.model);
         this.scene.add(skeletonHelper);
         // this.model.visible = false;
+
+        var helper_axes = new THREE.AxesHelper(80);
+        this.spine.add(helper_axes);
       },
       undefined, // We don't need this function
       function (error) {
@@ -164,6 +167,163 @@ export default class Stacy2 extends Component {
     dirLight.shadow.camera.bottom = d * -1;
     // Add directional Light to scene
     this.scene.add(dirLight);
+
+    function update_data(body_pose) {
+      this.body_pose = body_pose;
+
+      if (this.neck) {
+        // this.poseAngles(this.neck);
+      }
+
+      if (this.right_arm) {
+        this.poseAngles(this.right_arm);
+      }
+      if (this.right_fore_arm) {
+        this.poseAngles(this.right_fore_arm);
+      }
+      if (this.left_arm) {
+        this.poseAngles(this.left_arm);
+      }
+      if (this.left_fore_arm) {
+        this.poseAngles(this.left_fore_arm);
+      }
+      if (this.right_hand) {
+        this.poseAngles(this.right_hand);
+      }
+      if (this.left_hand) {
+        this.poseAngles(this.left_hand);
+      }
+    }
+
+    function poseAngles(joint) {
+      if (this.body_pose.length == 0) return;
+      const pose_left_shoulder = new THREE.Vector3(
+        this.body_pose[11].slice(0, 3)[0],
+        -this.body_pose[11].slice(0, 3)[1],
+        -this.body_pose[11].slice(0, 3)[2]
+      );
+      const pose_right_shoulder = new THREE.Vector3(
+        this.body_pose[12].slice(0, 3)[0],
+        -this.body_pose[12].slice(0, 3)[1],
+        -this.body_pose[12].slice(0, 3)[2]
+      );
+      const pose_left_elbow = new THREE.Vector3(
+        this.body_pose[13].slice(0, 3)[0],
+        -this.body_pose[13].slice(0, 3)[1],
+        -this.body_pose[13].slice(0, 3)[2]
+      );
+      const pose_right_elbow = new THREE.Vector3(
+        this.body_pose[14].slice(0, 3)[0],
+        -this.body_pose[14].slice(0, 3)[1],
+        -this.body_pose[14].slice(0, 3)[2]
+      );
+      const pose_left_hand = new THREE.Vector3(
+        this.body_pose[15].slice(0, 3)[0],
+        -this.body_pose[15].slice(0, 3)[1],
+        -this.body_pose[15].slice(0, 3)[2]
+      );
+      const pose_right_hand = new THREE.Vector3(
+        this.body_pose[16].slice(0, 3)[0],
+        -this.body_pose[16].slice(0, 3)[1],
+        -this.body_pose[16].slice(0, 3)[2]
+      );
+      const pose_left_hand_thumb_4 = new THREE.Vector3(
+        this.body_pose[21].slice(0, 3)[0],
+        -this.body_pose[21].slice(0, 3)[1],
+        -this.body_pose[21].slice(0, 3)[2]
+      );
+      const pose_right_hand_thumb_4 = new THREE.Vector3(
+        this.body_pose[22].slice(0, 3)[0],
+        -this.body_pose[22].slice(0, 3)[1],
+        -this.body_pose[22].slice(0, 3)[2]
+      );
+      const pose_left_hip = new THREE.Vector3(
+        this.body_pose[23].slice(0, 3)[0],
+        -this.body_pose[23].slice(0, 3)[1],
+        -this.body_pose[23].slice(0, 3)[2]
+      );
+      const pose_right_hip = new THREE.Vector3(
+        this.body_pose[24].slice(0, 3)[0],
+        -this.body_pose[24].slice(0, 3)[1],
+        -this.body_pose[24].slice(0, 3)[2]
+      );
+
+      const pose_hips = new THREE.Vector3()
+        .copy(pose_left_hip)
+        .add(pose_right_hip)
+        .multiplyScalar(0.5);
+      const pose_spine_2 = new THREE.Vector3()
+        .copy(pose_right_shoulder)
+        .add(pose_left_shoulder)
+        .multiplyScalar(0.5); //.multiplyScalar(0.728);
+
+      var point_parent;
+      var point_articulation;
+      var point_child;
+      if (joint == this.neck) {
+        var point_parent = pose_hips;
+        var point_articulation = pose_spine_2;
+        var point_arm = pose_right_elbow;
+
+        const vec_parent = new THREE.Vector3()
+          .subVectors(point_articulation, point_parent)
+          .multiplyScalar(0.375);
+        const vec_bone = new THREE.Vector3().subVectors(
+          point_arm,
+          point_articulation
+        );
+
+        setJointAnglesFromVects(joint, vec_bone, vec_parent);
+      } else if (joint == this.right_arm) {
+        point_parent = pose_spine_2;
+        point_articulation = pose_right_shoulder;
+        point_child = pose_right_elbow;
+      } else if (joint == this.left_arm) {
+        point_parent = pose_spine_2;
+        point_articulation = pose_left_shoulder;
+        point_child = pose_left_elbow;
+      } else if (joint == this.right_fore_arm) {
+        point_parent = pose_right_shoulder;
+        point_articulation = pose_right_elbow;
+        point_child = pose_right_hand;
+      } else if (joint == this.left_fore_arm) {
+        point_parent = pose_left_shoulder;
+        point_articulation = pose_left_elbow;
+        point_child = pose_left_hand;
+      } else if (joint == this.right_hand) {
+        point_parent = pose_right_elbow;
+        point_articulation = pose_right_hand;
+        point_child = pose_right_hand_thumb_4;
+      } else if (joint == this.left_hand) {
+        point_parent = pose_left_elbow;
+        point_articulation = pose_left_hand;
+        point_child = pose_left_hand_thumb_4;
+      }
+      const vec_parent = new THREE.Vector3().subVectors(
+        point_articulation,
+        point_parent
+      );
+      const vec_bone = new THREE.Vector3().subVectors(
+        point_child,
+        point_articulation
+      );
+      setJointAnglesFromVects(joint, vec_parent, vec_bone);
+    }
+
+    function setJointAnglesFromVects(joint, vec_parent_world, vec_child_world) {
+      const vec_child_local = joint.parent
+        .clone()
+        .worldToLocal(vec_child_world.clone());
+      const vec_parent_local = joint.parent
+        .clone()
+        .worldToLocal(vec_parent_world.clone());
+      var quat_pose_rot = new THREE.Quaternion();
+      quat_pose_rot.setFromUnitVectors(
+        vec_parent_local.clone().normalize(),
+        vec_child_local.clone().normalize()
+      );
+      joint.quaternion.rotateTowards(quat_pose_rot.clone(), 0.05);
+    }
   }
 
   render() {
