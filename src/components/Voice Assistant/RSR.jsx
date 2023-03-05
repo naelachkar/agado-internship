@@ -13,7 +13,12 @@ export default function RSR() {
   } = useSpeechRecognition();
 
   if (!browserSupportsSpeechRecognition) {
-    return <span>Browser doesn't support speech recognition.</span>;
+    return (
+      <>
+        <Navbar />
+        <span>Your browser doesn't support speech recognition.</span>
+      </>
+    );
   }
 
   return (

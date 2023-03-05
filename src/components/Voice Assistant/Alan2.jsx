@@ -1,6 +1,7 @@
 import alanBtn from "@alan-ai/alan-sdk-web";
 import { useEffect, useRef, useState } from "react";
 import Navbar from "../avatar/Navbar";
+import './Alan.css'
 
 export default function Alan2() {
   const [bool, setBool] = useState(true);
