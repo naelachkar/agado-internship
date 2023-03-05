@@ -2,7 +2,7 @@ import regeneratorRuntime from "regenerator-runtime";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
-import Navbar from "../avatar/Navbar";
+import Navbar from "../Navbar";
 
 export default function RSR() {
   const {
@@ -13,7 +13,12 @@ export default function RSR() {
   } = useSpeechRecognition();
 
   if (!browserSupportsSpeechRecognition) {
-    return <span>Browser doesn't support speech recognition.</span>;
+    return (
+      <>
+        <Navbar />
+        <span>Your browser doesn't support speech recognition.</span>
+      </>
+    );
   }
 
   return (
