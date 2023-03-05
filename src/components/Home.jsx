@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <div class="wrapper">
+      <div className="wrapper">
         <h1>Text-to-speech methods</h1>
         <div className="flex column">
           <button onClick={() => navigate("/builtIn")}>
