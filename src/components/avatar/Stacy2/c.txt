@@ -1,0 +1,13 @@
+0 = mixamorigHead
+11 = mixamorigRightShoulder
+12 = mixamorigLeftShoulder
+13 = mixamorigRightArm
+14 = mixamorigLeftArm
+15 = mixamorigRightForeArm
+16 = mixamorigLeftForeArm
+23 = mixamorigRightUpLeg
+24 = mixamorigLeftUpLeg
+25 = mixamorigRightLeg
+26 = mixamorigLeftLeg
+27 = mixamorigRightFoot
+28 = mixamorigLeftFoot
