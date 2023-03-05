@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import StacyScript2 from "./StacyScript2";
 import "../StacyStyle.css";
-import Navbar from "../Navbar";
+import Navbar from "../../Navbar";
 
 export default function Stacy() {
   useEffect(() => {

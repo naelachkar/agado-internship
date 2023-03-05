@@ -2,7 +2,7 @@ import regeneratorRuntime from "regenerator-runtime";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
-import Navbar from "../avatar/Navbar";
+import Navbar from "../Navbar";
 
 export default function RSR() {
   const {

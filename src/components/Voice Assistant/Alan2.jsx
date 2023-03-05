@@ -1,6 +1,6 @@
 import alanBtn from "@alan-ai/alan-sdk-web";
 import { useEffect, useRef, useState } from "react";
-import Navbar from "../avatar/Navbar";
+import Navbar from "../Navbar";
 import './Alan.css'
 
 export default function Alan2() {
