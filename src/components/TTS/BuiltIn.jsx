@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import DetectOS from "../assets/DetectOS";
-import Navbar from "../avatar/Navbar";
+import Navbar from "../Navbar";
 
 export default function BuiltIn() {
   const [text, setText] = useState();

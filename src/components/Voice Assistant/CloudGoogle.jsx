@@ -1,9 +1,9 @@
-import Navbar from "../avatar/Navbar";
+import Navbar from "../Navbar";
 
 export default function CloudGoogle(props) {
   return (
     <>
-    <Navbar />
+      <Navbar />
       <h1>Cloud Google</h1>
     </>
   );
