@@ -1,10 +1,8 @@
 #root {
-  /* max-width: 1280px; */
-  /* margin: 0 auto; */
-  /* padding: 0 2rem; */
   text-align: center;
   display: flex;
   flex-direction: column;
+  max-width: 100vw;
 }
 
 .logo {
@@ -64,7 +62,7 @@ nav {
   top: 0;
   color: white;
   padding: 0.25rem 2rem;
-  width: auto;
+  width: 100vw;
   display: flex;
   justify-content: center;
 }
@@ -72,10 +70,16 @@ nav {
 .divBtn {
   padding: 0 0.5rem;
   width: fit-content;
+  border-radius: 8px;
 }
 
 .divBtn:hover {
   background-color: white;
   color: black;
   cursor: pointer;
+}
+
+.wrapper {
+  max-width: 1280px;
+  place-self: center;
 }
