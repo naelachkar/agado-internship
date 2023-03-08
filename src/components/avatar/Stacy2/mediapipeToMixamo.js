@@ -187,7 +187,6 @@ export default function mediapipeToMixamo(arg) {
     // const hip2d_right = vec3(0.0, 0.0, 0.0);
 
     // Original ChatGPT had 'vec3.fromValues()':
-    // console.log("Type of landmark: ", typeof landmark);
     let landmarks = landmark.map((kpt) => vec3(...kpt.slice(0, 3)));
 
     glm_list[Mixamo.Hips] = avg_vec3(
@@ -245,19 +244,8 @@ export default function mediapipeToMixamo(arg) {
     return [glm_list, visibility_list];
   }
 
-  // const path =
-  //   "../elem/mp2_squats_shula1_noncorrector_singleangle_20220915172307.json";
-
-  // const fs = require("fs");
-  // const file = JSON.parse(fs.readFileSync(path, "utf8"));
-
-  // const json = JSON.parse(arg);
-  // const frames = json.frames;
-
   const frames = arg.frames;
   const poses = frames.map((elem) => elem["2d_pose"]);
-  // const posesArray = new Float32Array(poses.flat());
-  // console.log(posesArray);
 
   const mp_name_idx_map = get_name_idx_map();
   const mm_mp_map = get_mixamo_name_mediapipe_name_map();
@@ -273,8 +261,6 @@ export default function mediapipeToMixamo(arg) {
 
   const glm_poses = [];
   for (const pose of poses) {
-    // console.log("Poses :", poses);
-    // console.log("Pose: ", pose);
     const [glm_list, visibility_list] = mediapipe_to_glm(
       pose,
       mp_idx_mm_idx_map
@@ -284,3 +270,34 @@ export default function mediapipeToMixamo(arg) {
 
   return glm_poses;
 }
+
+const MixamoBones = Object.freeze({
+  Hips: 0,
+  Spine: 1,
+  Spine1: 2,
+  Spine2: 3,
+  Neck: 4,
+  Head: 5,
+  LeftArm: 6,
+  LeftForeArm: 7,
+  LeftHand: 8,
+  LeftHandThumb1: 9,
+  LeftHandIndex1: 10,
+  LeftHandPinky1: 11,
+  RightArm: 12,
+  RightForeArm: 13,
+  RightHand: 14,
+  RightHandThumb1: 15,
+  RightHandIndex1: 16,
+  RightHandPinky1: 17,
+  LeftUpLeg: 18,
+  LeftLeg: 19,
+  LeftFoot: 20,
+  LeftToeBase: 21,
+  RightUpLeg: 22,
+  RightLeg: 23,
+  RightFoot: 24,
+  RightToeBase: 25,
+});
+
+export { MixamoBones };

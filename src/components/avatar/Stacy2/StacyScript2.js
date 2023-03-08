@@ -1,6 +1,6 @@
 import img from "../../assets/AgadoStacy.jpeg";
-import mediapipeToMixamo from "./mediapipeToMixamo";
-import shula from './shula.json';
+import mediapipeToMixamo, { MixamoBones } from "./mediapipeToMixamo";
+import shula from "./shula.json";
 
 async function StacyScript() {
   // Set our main variables
@@ -74,18 +74,41 @@ async function StacyScript() {
 
     //! Conversion from MediaPipe to Mixamo
     const converted = mediapipeToMixamo(shula);
-    console.log("Converted: ", converted);
+    // console.log("Converted: ", converted);
 
     loader.load(
       MODEL_PATH,
       function (gltf) {
         // A lot is going to happen here
         model = gltf.scene;
-        let fileAnimations = gltf.animations;
+
+        const stacy = model.children[0].children[0];
+        const skeleton = stacy.skeleton;
+        const boneList = {};
+        skeleton.bones.forEach((bone) => {
+          boneList[bone.name.replace("mixamorig", "")] = bone;
+        });
+        // console.log(boneList);
+        // console.log(MixamoBones);
+
+        for (const bone in boneList) {
+          if (!MixamoBones[bone]) {
+            delete boneList[bone];
+          }
+        }
+
+        console.log("Filtered: ", boneList);
+        const boneListArray = Object.values(boneList);
+        boneListArray.map((bone) => {
+          bone.name = bone.name.replace("mixamorig", "");
+        });
+        console.log("boneListArray: ", boneListArray);
+        console.log("boneList.length: ", boneListArray.length);
+        console.log("converted[0].length ", converted[0].length);
 
         model.traverse((o) => {
           //To get the list of all the bones
-          // console.log(o.name);
+          // console.log(o.type);
 
           if (o.isMesh) {
             o.castShadow = true;
@@ -93,16 +116,24 @@ async function StacyScript() {
             o.material = stacy_mtl;
           }
 
+          // if (o.isSkinnedMesh) {
+          //   console.log(o.skeleton.bones);
+          // }
+
+          // if (o.isBone) {
+          //   console.log(o)
+          // }
+
           // Reference the neck and waist bones
-          if (o.isBone && o.name === "mixamorigHead") {
-            head = o;
-          }
-          if (o.isBone && o.name === "mixamorigNeck") {
-            neck = o;
-          }
-          if (o.isBone && o.name === "mixamorigSpine") {
-            waist = o;
-          }
+          // if (o.isBone && o.name === "mixamorigHead") {
+          //   head = o;
+          // }
+          // if (o.isBone && o.name === "mixamorigNeck") {
+          //   neck = o;
+          // }
+          // if (o.isBone && o.name === "mixamorigSpine") {
+          //   waist = o;
+          // }
         });
 
         // Set the models initial scale (its size)
@@ -121,10 +152,6 @@ async function StacyScript() {
         // rotateY(angle) - Rotates the object around the y-axis by the specified angle.
         // rotateZ(angle) - Rotates the object around the z-axis by the specified angle.
         // scale.set(x, y, z) - Sets the scale of the object to the specified values in each direction.
-
-        head.position.x = mediaPipe[0][0];
-        head.position.y = mediaPipe[0][1];
-        head.position.z = mediaPipe[0][2];
 
         scene.add(model);
       },
