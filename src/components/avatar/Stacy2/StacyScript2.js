@@ -214,7 +214,7 @@ function StacyScript() {
 
         model.traverse((o) => {
           //To get the list of all the bones
-          console.log(o.name);
+          // console.log(o.name);
 
           if (o.isMesh) {
             o.castShadow = true;
@@ -231,48 +231,6 @@ function StacyScript() {
           }
           if (o.isBone && o.name === "mixamorigSpine") {
             waist = o;
-          }
-          if (o.isBone && o.name === "mixamorigRightShoulder") {
-            rightShoulder = o;
-          }
-          if (o.isBone && o.name === "mixamorigLeftShoulder") {
-            leftShoulder = o;
-          }
-          if (o.isBone && o.name === "mixamorigRightArm") {
-            rightArm = o;
-          }
-          if (o.isBone && o.name === "mixamorigLeftArm") {
-            leftArm = o;
-          }
-          if (o.isBone && o.name === "mixamorigRightForeArm") {
-            rightForeArm = o;
-          }
-          if (o.isBone && o.name === "mixamorigLeftForeArm") {
-            leftForeArm = o;
-          }
-          if (o.isBone && o.name === "mixamorigRightHand") {
-            rightHand = o;
-          }
-          if (o.isBone && o.name === "mixamorigLeftHand") {
-            leftHand = o;
-          }
-          if (o.isBone && o.name === "mixamorigRightUpLeg") {
-            rightUpLeg = o;
-          }
-          if (o.isBone && o.name === "mixamorigLeftUpLeg") {
-            leftUpLeg = o;
-          }
-          if (o.isBone && o.name === "mixamorigRightLeg") {
-            rightLeg = o;
-          }
-          if (o.isBone && o.name === "mixamorigLeftLeg") {
-            leftLeg = o;
-          }
-          if (o.isBone && o.name === "mixamorigRightFoot") {
-            rightFoot = o;
-          }
-          if (o.isBone && o.name === "mixamorigLeftFoot") {
-            leftFoot = o;
           }
         });
 
@@ -293,51 +251,9 @@ function StacyScript() {
         // rotateZ(angle) - Rotates the object around the z-axis by the specified angle.
         // scale.set(x, y, z) - Sets the scale of the object to the specified values in each direction.
 
-        // waist.rotation.y = 45;
-        // neck.rotation.y = 45;
-        leftArm.rotation.x = -45;
-        leftForeArm.rotation.y = -45;
-        // console.log(leftArm)
-
         head.position.x = mediaPipe[0][0];
         head.position.y = mediaPipe[0][1];
         head.position.z = mediaPipe[0][2];
-        rightShoulder.position.x = mediaPipe[11][0];
-        rightShoulder.position.y = mediaPipe[11][1];
-        rightShoulder.position.z = mediaPipe[11][2];
-        leftShoulder.position.x = mediaPipe[12][0];
-        leftShoulder.position.y = mediaPipe[12][1];
-        leftShoulder.position.z = mediaPipe[12][2];
-        rightArm.position.x = mediaPipe[13][0];
-        rightArm.position.y = mediaPipe[13][1];
-        rightArm.position.z = mediaPipe[13][2];
-        leftArm.position.x = mediaPipe[14][0];
-        leftArm.position.y = mediaPipe[14][1];
-        leftArm.position.z = mediaPipe[14][2];
-        rightForeArm.position.x = mediaPipe[15][0];
-        rightForeArm.position.y = mediaPipe[15][1];
-        rightForeArm.position.z = mediaPipe[15][2];
-        leftForeArm.position.x = mediaPipe[16][0];
-        leftForeArm.position.y = mediaPipe[16][1];
-        leftForeArm.position.z = mediaPipe[16][2];
-        rightUpLeg.position.x = mediaPipe[23][0];
-        rightUpLeg.position.y = mediaPipe[23][1];
-        rightUpLeg.position.z = mediaPipe[23][2];
-        leftUpLeg.position.x = mediaPipe[24][0];
-        leftUpLeg.position.y = mediaPipe[24][1];
-        leftUpLeg.position.z = mediaPipe[24][2];
-        rightLeg.position.x = mediaPipe[25][0];
-        rightLeg.position.y = mediaPipe[25][1];
-        rightLeg.position.z = mediaPipe[25][2];
-        leftLeg.position.x = mediaPipe[26][0];
-        leftLeg.position.y = mediaPipe[26][1];
-        leftLeg.position.z = mediaPipe[26][2];
-        rightFoot.position.x = mediaPipe[27][0];
-        rightFoot.position.y = mediaPipe[27][1];
-        rightFoot.position.z = mediaPipe[27][2];
-        leftFoot.position.x = mediaPipe[28][0];
-        leftFoot.position.y = mediaPipe[28][1];
-        leftFoot.position.z = mediaPipe[28][2];
 
         scene.add(model);
       },
