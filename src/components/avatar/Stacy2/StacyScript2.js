@@ -1,6 +1,8 @@
 import img from "../../assets/AgadoStacy.jpeg";
+import mediapipeToMixamo from "./mediapipeToMixamo";
+import shula from './shula.json';
 
-function StacyScript() {
+async function StacyScript() {
   const mediaPipe = [
     [
       0.5184473991394043, 0.19857102632522583, -0.4661916494369507,
@@ -163,7 +165,7 @@ function StacyScript() {
 
   init();
 
-  function init() {
+  async function init() {
     const MODEL_PATH =
       "https://s3-us-west-2.amazonaws.com/s.cdpn.io/1376484/stacy_lightweight.glb";
 
@@ -204,6 +206,21 @@ function StacyScript() {
     });
 
     var loader = new THREE.GLTFLoader();
+
+    // async function loadJson() {
+    //   try {
+    //     const response = await fetch("/component/avatar/Stacy2/shula.json");
+    //     const data = await response.json();
+    //     return data;
+    //   } catch (err) {
+    //     console.error(err);
+    //   }
+    // }
+    // const jsonExample = await loadJson();
+    
+    // console.log(shula);
+    const converted = mediapipeToMixamo(shula);
+    console.log("Converted: ", converted);
 
     loader.load(
       MODEL_PATH,
