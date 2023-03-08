@@ -13,6 +13,7 @@
     "@alan-ai/alan-sdk-web": "^1.8.42",
     "dotenv": "^16.0.3",
     "easy-speech": "^1.2.1",
+    "glm-js": "^0.0.6-c",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
