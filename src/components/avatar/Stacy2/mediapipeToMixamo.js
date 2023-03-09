@@ -181,7 +181,9 @@ export default function mediapipeToMixamo(arg) {
   }
 
   function mediapipe_to_glm(landmark, mp_idx_mm_idx_map) {
-    const glm_list = new Array(26);
+    // console.log(landmark);
+    // const glm_list = new Array(26);
+    const glm_list = [];
     const visibility_list = new Array(26);
     // const hip2d_left = vec3(0.0, 0.0, 0.0);
     // const hip2d_right = vec3(0.0, 0.0, 0.0);

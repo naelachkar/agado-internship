@@ -74,7 +74,7 @@ async function StacyScript() {
 
     //! Conversion from MediaPipe to Mixamo
     const converted = mediapipeToMixamo(shula);
-    // console.log("Converted: ", converted);
+    console.log("Converted: ", converted[0]);
 
     loader.load(
       MODEL_PATH,
@@ -84,27 +84,75 @@ async function StacyScript() {
 
         const stacy = model.children[0].children[0];
         const skeleton = stacy.skeleton;
-        const boneList = {};
-        skeleton.bones.forEach((bone) => {
-          boneList[bone.name.replace("mixamorig", "")] = bone;
-        });
-        // console.log(boneList);
-        // console.log(MixamoBones);
+        // const boneList = {};
+        console.log(skeleton.bones);
 
-        for (const bone in boneList) {
-          if (!MixamoBones[bone]) {
-            delete boneList[bone];
-          }
-        }
+        // let test = {};
 
-        console.log("Filtered: ", boneList);
-        const boneListArray = Object.values(boneList);
-        boneListArray.map((bone) => {
+        // function jsonparse(bone) {
+        //   const {name, matrix, position, rotation, scale, quaternion, up, uuid} = bone;
+        //   let childrenList = {};
+        //   if (bone.children.length > 0) {
+        //     childrenList = bone.children.map((bone) => jsonparse(bone))
+        //   }
+        //   return {name, matrix, position, rotation, scale, quaternion, up, uuid, children: childrenList}
+        // }
+
+        // skeleton.bones.forEach((bone, i) => {
+        //   test[i] = jsonparse(bone)
+        // });
+        // const bonesJson = JSON.stringify(test);
+
+        // const blob = new Blob([bonesJson], { type: "application/json" });
+
+        // const url = URL.createObjectURL(blob);
+
+        // const link = document.createElement("a");
+        // link.href = url;
+        // link.download = "data.json";
+        // link.click();
+
+        // URL.revokeObjectURL(url);
+
+        // fs.writeFile('bones.json', bonesJson, 'utf-8');
+        skeleton.bones.forEach((bone, i) => {
+          Object.defineProperties(bone, {
+            position: {
+              writable: true,
+            },
+          });
           bone.name = bone.name.replace("mixamorig", "");
+          if (MixamoBones[bone.name] != undefined) {
+            // console.log(bone.name);
+            // console.log("shula ", shula.frames.)
+            // console.log("Old p: ", bone.position);
+            // bone.position = converted[0][MixamoBones[bone.name]];
+            const mixX = converted[0][MixamoBones[bone.name]].x *10 +10;
+            const mixY = converted[0][MixamoBones[bone.name]].y *10 +10;
+            const mixZ = converted[0][MixamoBones[bone.name]].z *10 +10;
+            bone.position.x = mixX;
+            bone.position.y = mixY;
+            bone.position.z = mixZ;
+
+            // bone.position = converted[0][MixamoBones[bone.name]];
+            // console.log("New p: ", bone.position);
+          }
         });
-        console.log("boneListArray: ", boneListArray);
-        console.log("boneList.length: ", boneListArray.length);
-        console.log("converted[0].length ", converted[0].length);
+
+        // for (const bone in boneList) {
+        //   if (!MixamoBones[bone]) {
+        //     delete boneList[bone];
+        //   }
+        // }
+
+        // console.log("Filtered: ", boneList);
+        // const boneListArray = Object.values(boneList);
+        // boneListArray.map((bone) => {
+        //   bone.name = bone.name.replace("mixamorig", "");
+        // });
+        // console.log("boneListArray: ", boneListArray);
+        // console.log("boneList.length: ", boneListArray.length);
+        // console.log("converted[0].length ", converted[0].length);
 
         model.traverse((o) => {
           //To get the list of all the bones
@@ -137,7 +185,7 @@ async function StacyScript() {
         });
 
         // Set the models initial scale (its size)
-        model.scale.set(12, 12, 12);
+        model.scale.set(10, 10, 10);
         model.position.y = -11;
 
         // Other methods available:
