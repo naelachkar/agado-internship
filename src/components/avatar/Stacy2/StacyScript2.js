@@ -8,23 +8,8 @@ async function StacyScript() {
     renderer,
     camera,
     model, // Our character
-    neck, // Reference to the neck bone in the skeleton
-    waist, // Reference to the waist bone in the skeleton
-    head,
-    rightShoulder,
-    leftShoulder,
-    rightArm,
-    leftArm,
-    rightForeArm,
-    leftForeArm,
-    rightHand,
-    leftHand,
-    rightUpLeg,
-    leftUpLeg,
-    rightLeg,
-    leftLeg,
-    rightFoot,
-    leftFoot,
+    // neck, // Reference to the neck bone in the skeleton
+    // waist, // Reference to the waist bone in the skeleton
     mixer, // THREE.js animations mixer
     clock = new THREE.Clock(); // Used for anims, which run to a clock instead of frame rate
 
@@ -74,7 +59,6 @@ async function StacyScript() {
 
     //! Conversion from MediaPipe to Mixamo
     const converted = mediapipeToMixamo(shula);
-    console.log("Converted: ", converted[0]);
 
     loader.load(
       MODEL_PATH,
@@ -83,24 +67,55 @@ async function StacyScript() {
         model = gltf.scene;
 
         const stacy = model.children[0].children[0];
+        // console.log(stacy);
         const skeleton = stacy.skeleton;
         // const boneList = {};
         console.log(skeleton.bones);
 
+        // skeleton.bones.forEach((bone) => {
+        //   const start = bone.position.clone();
+        //   const end = new THREE.Vector3().setFromMatrixPosition(
+        //     bone.matrixWorld
+        //   );
+        //   const boneLength = start.distanceTo(end);
+        //   console.log(`Bone name: ${bone.name.replace("mixamorig", "")}
+        //     Start position: ${start.toArray()}
+        //     End position: ${end.toArray()}
+        //     Length: ${boneLength}`);
+        // });
+
         // let test = {};
 
         // function jsonparse(bone) {
-        //   const {name, matrix, position, rotation, scale, quaternion, up, uuid} = bone;
+        //   const { name, position, rotation, scale, matrixWorld, quaternion, parent } =
+        //     bone;
+        //   const relativeEnd = new THREE.Vector3().setFromMatrixPosition(
+        //     matrixWorld
+        //   );
+        //   const length = position.distanceTo(relativeEnd);
         //   let childrenList = {};
         //   if (bone.children.length > 0) {
-        //     childrenList = bone.children.map((bone) => jsonparse(bone))
+        //     childrenList = bone.children.map((bone) => jsonparse(bone));
         //   }
-        //   return {name, matrix, position, rotation, scale, quaternion, up, uuid, children: childrenList}
+        //   return {
+        //     name,
+        //     start: position,
+        //     end: relativeEnd,
+        //     parent: parent.position,
+        //     length,
+        //     rotation,
+        //     scale,
+        //     quaternion,
+        //     children: childrenList,
+        //   };
         // }
 
         // skeleton.bones.forEach((bone, i) => {
         //   test[i] = jsonparse(bone)
         // });
+
+        // const test = jsonparse(model.children[0].children[1]);
+
         // const bonesJson = JSON.stringify(test);
 
         // const blob = new Blob([bonesJson], { type: "application/json" });
@@ -114,30 +129,45 @@ async function StacyScript() {
 
         // URL.revokeObjectURL(url);
 
-        // fs.writeFile('bones.json', bonesJson, 'utf-8');
-        skeleton.bones.forEach((bone, i) => {
-          Object.defineProperties(bone, {
-            position: {
-              writable: true,
-            },
-          });
-          bone.name = bone.name.replace("mixamorig", "");
-          if (MixamoBones[bone.name] != undefined) {
+        // fs.writeFile("bones.json", bonesJson, "utf-8");
+
+        // const inverseMatrix = new THREE.Matrix4().getInverse(skeleton.bones[0].matrixWorld);
+        // const firstMPPose = shula.frames[0][`2d_pose`];
+        // for (let i = 0; i < firstMPPose.length; i++) {
+        //   const poseCoord = firstMPPose[i];
+        
+        //   // Create a Three.js vector from the MediaPipe pose coordinate
+        //   const vector = new THREE.Vector3(poseCoord[0], poseCoord[1], poseCoord[2]);
+        
+        //   // Transform the vector into bone space
+        //   vector.applyMatrix4(inverseMatrix);
+        
+        //   // Set the position of the corresponding bone
+        //   skeleton.bones[i].position.copy(vector);
+        // }
+
+        // skeleton.bones.forEach((bone, i) => {
+        //   Object.defineProperties(bone, {
+        //     position: {
+        //       writable: true,
+        //     },
+        //   });
+        //   bone.name = bone.name.replace("mixamorig", "");
+        //   if (MixamoBones[bone.name] != undefined) {
             // console.log(bone.name);
             // console.log("shula ", shula.frames.)
             // console.log("Old p: ", bone.position);
             // bone.position = converted[0][MixamoBones[bone.name]];
-            const mixX = converted[0][MixamoBones[bone.name]].x *10 +10;
-            const mixY = converted[0][MixamoBones[bone.name]].y *10 +10;
-            const mixZ = converted[0][MixamoBones[bone.name]].z *10 +10;
-            bone.position.x = mixX;
-            bone.position.y = mixY;
-            bone.position.z = mixZ;
-
+            // const mixX = converted[0][MixamoBones[bone.name]].x ;
+            // const mixY = converted[0][MixamoBones[bone.name]].y ;
+            // const mixZ = converted[0][MixamoBones[bone.name]].z ;
+            // bone.position.x = mixX;
+            // bone.position.y = mixY;
+            // bone.position.z = mixZ;
             // bone.position = converted[0][MixamoBones[bone.name]];
             // console.log("New p: ", bone.position);
-          }
-        });
+        //   }
+        // });
 
         // for (const bone in boneList) {
         //   if (!MixamoBones[bone]) {
