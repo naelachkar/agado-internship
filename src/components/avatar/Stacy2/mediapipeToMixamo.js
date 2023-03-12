@@ -247,7 +247,7 @@ export default function mediapipeToMixamo(arg) {
   }
 
   const frames = arg.frames;
-  const poses = frames.map((elem) => elem["2d_pose"]);
+  const poses = frames.map((elem) => elem["3d_pose"]);
 
   const mp_name_idx_map = get_name_idx_map();
   const mm_mp_map = get_mixamo_name_mediapipe_name_map();

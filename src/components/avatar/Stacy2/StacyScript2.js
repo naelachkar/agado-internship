@@ -1,6 +1,7 @@
 import img from "../../assets/AgadoStacy.jpeg";
 import mediapipeToMixamo, { MixamoBones } from "./mediapipeToMixamo";
 import shula from "./shula.json";
+import testFunction from "./testFunction";
 
 async function StacyScript() {
   // Set our main variables
@@ -59,6 +60,9 @@ async function StacyScript() {
 
     //! Conversion from MediaPipe to Mixamo
     const converted = mediapipeToMixamo(shula);
+    const firstPose = shula.frames[0]["3d_pose"];
+    const convertedTest = testFunction(firstPose);
+    console.log(convertedTest);
 
     loader.load(
       MODEL_PATH,
@@ -68,9 +72,27 @@ async function StacyScript() {
 
         const stacy = model.children[0].children[0];
         // console.log(stacy);
-        const skeleton = stacy.skeleton;
+        const { bones } = stacy.skeleton;
+        // console.log(bones);
+
+        bones.forEach((bone) => {
+          Object.defineProperties(bone, {
+            position: {
+              writable: true,
+            },
+            rotation: {
+              writable: true,
+            },
+          });
+        });
+
+
+        bones[0].position = convertedTest.HipsBone.end;
+        bones[2].position = convertedTest.Spine1Bone.tbone;
+        bones[2].rotation = convertedTest.Spine1Bone.rbone;
+
         // const boneList = {};
-        console.log(skeleton.bones);
+        // console.log(skeleton.bones);
 
         // skeleton.bones.forEach((bone) => {
         //   const start = bone.position.clone();
@@ -131,21 +153,6 @@ async function StacyScript() {
 
         // fs.writeFile("bones.json", bonesJson, "utf-8");
 
-        // const inverseMatrix = new THREE.Matrix4().getInverse(skeleton.bones[0].matrixWorld);
-        // const firstMPPose = shula.frames[0][`2d_pose`];
-        // for (let i = 0; i < firstMPPose.length; i++) {
-        //   const poseCoord = firstMPPose[i];
-        
-        //   // Create a Three.js vector from the MediaPipe pose coordinate
-        //   const vector = new THREE.Vector3(poseCoord[0], poseCoord[1], poseCoord[2]);
-        
-        //   // Transform the vector into bone space
-        //   vector.applyMatrix4(inverseMatrix);
-        
-        //   // Set the position of the corresponding bone
-        //   skeleton.bones[i].position.copy(vector);
-        // }
-
         // skeleton.bones.forEach((bone, i) => {
         //   Object.defineProperties(bone, {
         //     position: {
@@ -154,35 +161,20 @@ async function StacyScript() {
         //   });
         //   bone.name = bone.name.replace("mixamorig", "");
         //   if (MixamoBones[bone.name] != undefined) {
-            // console.log(bone.name);
-            // console.log("shula ", shula.frames.)
-            // console.log("Old p: ", bone.position);
-            // bone.position = converted[0][MixamoBones[bone.name]];
-            // const mixX = converted[0][MixamoBones[bone.name]].x ;
-            // const mixY = converted[0][MixamoBones[bone.name]].y ;
-            // const mixZ = converted[0][MixamoBones[bone.name]].z ;
-            // bone.position.x = mixX;
-            // bone.position.y = mixY;
-            // bone.position.z = mixZ;
-            // bone.position = converted[0][MixamoBones[bone.name]];
-            // console.log("New p: ", bone.position);
+        //     // console.log(bone.name);
+        //     // console.log("shula ", shula.frames);
+        //     // console.log("Old p: ", bone.position);
+        //     // bone.position = converted[0][MixamoBones[bone.name]];
+        //     const mixX = converted[0][MixamoBones[bone.name]].x ;
+        //     const mixY = converted[0][MixamoBones[bone.name]].y ;
+        //     const mixZ = converted[0][MixamoBones[bone.name]].z ;
+        //     bone.position.x = mixX;
+        //     bone.position.y = mixY;
+        //     bone.position.z = mixZ;
+        //     bone.position = converted[0][MixamoBones[bone.name]];
+        //     // console.log("New p: ", bone.position);
         //   }
         // });
-
-        // for (const bone in boneList) {
-        //   if (!MixamoBones[bone]) {
-        //     delete boneList[bone];
-        //   }
-        // }
-
-        // console.log("Filtered: ", boneList);
-        // const boneListArray = Object.values(boneList);
-        // boneListArray.map((bone) => {
-        //   bone.name = bone.name.replace("mixamorig", "");
-        // });
-        // console.log("boneListArray: ", boneListArray);
-        // console.log("boneList.length: ", boneListArray.length);
-        // console.log("converted[0].length ", converted[0].length);
 
         model.traverse((o) => {
           //To get the list of all the bones
@@ -194,42 +186,14 @@ async function StacyScript() {
             o.material = stacy_mtl;
           }
 
-          // if (o.isSkinnedMesh) {
-          //   console.log(o.skeleton.bones);
-          // }
-
           // if (o.isBone) {
           //   console.log(o)
-          // }
-
-          // Reference the neck and waist bones
-          // if (o.isBone && o.name === "mixamorigHead") {
-          //   head = o;
-          // }
-          // if (o.isBone && o.name === "mixamorigNeck") {
-          //   neck = o;
-          // }
-          // if (o.isBone && o.name === "mixamorigSpine") {
-          //   waist = o;
           // }
         });
 
         // Set the models initial scale (its size)
         model.scale.set(10, 10, 10);
-        model.position.y = -11;
-
-        // Other methods available:
-        // add(object) - Adds a child object to the current object.
-        // remove(object) - Removes a child object from the current object.
-        // getPosition() - Returns the current position of the object.
-        // setPosition(x, y, z) - Sets the position of the object to the specified coordinates.
-        // translateX(distance) - Translates the object along the x-axis by the specified distance.
-        // translateY(distance) - Translates the object along the y-axis by the specified distance.
-        // translateZ(distance) - Translates the object along the z-axis by the specified distance.
-        // rotateX(angle) - Rotates the object around the x-axis by the specified angle.
-        // rotateY(angle) - Rotates the object around the y-axis by the specified angle.
-        // rotateZ(angle) - Rotates the object around the z-axis by the specified angle.
-        // scale.set(x, y, z) - Sets the scale of the object to the specified values in each direction.
+        model.position.y = 0;
 
         scene.add(model);
       },

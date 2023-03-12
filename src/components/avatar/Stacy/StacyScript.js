@@ -98,7 +98,7 @@ function StacyScript() {
         });
 
         // Set the models initial scale
-        model.scale.set(7, 7, 7);
+        model.scale.set(10, 10, 10);
         model.position.y = -11;
 
         // waist.rotation.y = 45;
