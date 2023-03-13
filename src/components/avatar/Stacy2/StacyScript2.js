@@ -62,12 +62,12 @@ async function StacyScript() {
     //! Conversion from MediaPipe to Mixamo
     // const converted = mediapipeToMixamo(shula);
     // console.log(converted);
-    // const firstPose = shula.frames[0]["3d_pose"];
-    // const convertedTest = testFunction(firstPose);
+    const firstPose = shula.frames[0]["3d_pose"];
+    const convertedTest = testFunction(firstPose);
     // console.log(convertedTest);
 
-    const convtest2 = test2(shula);
-    console.log(convtest2);
+    // const convtest2 = test2(shula);
+    // console.log(convtest2);
 
     loader.load(
       MODEL_PATH,
@@ -78,7 +78,8 @@ async function StacyScript() {
         const stacy = model.children[0].children[0];
         // console.log(stacy);
         const { bones } = stacy.skeleton;
-        // console.log(bones);
+        console.log(bones);
+        // console.log(bones[7].position, bones[31].position);
 
         bones.forEach((bone) => {
           Object.defineProperties(bone, {
@@ -90,6 +91,14 @@ async function StacyScript() {
             },
           });
         });
+
+        // bones[31].position.y = bones[7].position.y;
+        // bones[31].position.z = bones[7].position.z;
+        // bones[31].position.x = -bones[7].position.x;
+        // console.log(bones[4].position, bones[7].position, bones[31].position);
+
+        // bones[7].position.x += 50;
+        // bones[8].position.y += 50;
 
         // bones[0].position = convertedTest.HipsBone.end;
         // bones[2].position = convertedTest.Spine1Bone.tbone;
@@ -197,7 +206,7 @@ async function StacyScript() {
 
         // Set the models initial scale (its size)
         model.scale.set(10, 10, 10);
-        model.position.y = 0;
+        model.position.y = -11;
 
         scene.add(model);
       },
