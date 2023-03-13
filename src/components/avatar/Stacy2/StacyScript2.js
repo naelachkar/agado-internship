@@ -62,9 +62,9 @@ async function StacyScript() {
     //! Conversion from MediaPipe to Mixamo
     // const converted = mediapipeToMixamo(shula);
     // console.log(converted);
-    const firstPose = shula.frames[0]["3d_pose"];
+    const firstPose = shula.frames[0]["2d_pose"];
     const convertedTest = testFunction(firstPose);
-    // console.log(convertedTest);
+    console.log(convertedTest);
 
     // const convtest2 = test2(shula);
     // console.log(convtest2);
@@ -100,9 +100,27 @@ async function StacyScript() {
         // bones[7].position.x += 50;
         // bones[8].position.y += 50;
 
-        // bones[0].position = convertedTest.HipsBone.end;
-        // bones[2].position = convertedTest.Spine1Bone.tbone;
-        // bones[2].rotation = convertedTest.Spine1Bone.rbone;
+        bones[0].position = convertedTest.Hips.end;
+        bones[1].position = convertedTest.Spine.tbone;
+        bones[1].rotation = convertedTest.Spine.rbone;
+        bones[2].position = convertedTest.Spine1.tbone;
+        bones[2].rotation = convertedTest.Spine1.rbone;
+        bones[3].position = convertedTest.Spine2.tbone;
+        bones[3].rotation = convertedTest.Spine2.rbone;
+        bones[4].position = convertedTest.Neck.tbone;
+        bones[4].rotation = convertedTest.Neck.rbone;
+        // bones[55].position = convertedTest.LeftUpLeg.tbone;
+        // bones[55].rotation = convertedTest.LeftUpLeg.rbone;
+        // bones[56].position = convertedTest.LeftLeg.tbone;
+        // bones[56].rotation = convertedTest.LeftLeg.rbone;
+        // // bones[57].position = convertedTest.LeftFoot.tbone;
+        // // bones[57].rotation = convertedTest.LeftFoot.rbone;
+        // bones[60].position = convertedTest.RightUpLeg.tbone;
+        // bones[60].rotation = convertedTest.RightUpLeg.rbone;
+        // bones[61].position = convertedTest.RightLeg.tbone;
+        // bones[61].rotation = convertedTest.RightLeg.rbone;
+        // bones[62].position = convertedTest.RightFoot.tbone;
+        // bones[62].rotation = convertedTest.RightFoot.rbone;
 
         // const boneList = {};
         // console.log(skeleton.bones);
@@ -206,7 +224,7 @@ async function StacyScript() {
 
         // Set the models initial scale (its size)
         model.scale.set(10, 10, 10);
-        model.position.y = -11;
+        // model.position.y = -11;
 
         scene.add(model);
       },

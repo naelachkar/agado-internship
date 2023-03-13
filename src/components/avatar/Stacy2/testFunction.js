@@ -139,10 +139,30 @@ export default function testFunction(MediaPipe) {
     MediaPipe[Keypoints.LEFT_HIP],
     MediaPipe[Keypoints.RIGHT_HIP]
   );
+
+  const avgHip = [
+    (MediaPipe[Keypoints.LEFT_HIP][0] + MediaPipe[Keypoints.RIGHT_HIP][0]) *
+      0.5,
+    (MediaPipe[Keypoints.LEFT_HIP][1] + MediaPipe[Keypoints.RIGHT_HIP][1]) *
+      0.5,
+    (MediaPipe[Keypoints.LEFT_HIP][2] + MediaPipe[Keypoints.RIGHT_HIP][2]) *
+      0.5,
+  ];
+  // console.log(avgHip)
+
+  MediaPipe.forEach((kpt) => {
+    kpt[0] = kpt[0] - avgHip[0];
+    kpt[1] = kpt[1] - avgHip[1];
+    kpt[0] = kpt[0] * 10;
+    kpt[1] = kpt[1] * 10;
+  });
+
+  // console.log(MediaPipe);
+
   stacyPoints.Neck = avgVec3(
     MediaPipe[Keypoints.LEFT_SHOULDER],
     MediaPipe[Keypoints.RIGHT_SHOULDER]
-  );
+  );  
   stacyPoints.Spine1 = avgVec3_2(stacyPoints.Hips, stacyPoints.Neck);
   stacyPoints.Spine = avgVec3_2(stacyPoints.Hips, stacyPoints.Spine1);
   stacyPoints.Spine2 = avgVec3_2(stacyPoints.Spine1, stacyPoints.Neck);
@@ -169,14 +189,52 @@ export default function testFunction(MediaPipe) {
   // stacyPoints.RightHandThumb1 = MediaPipe[Keypoints.RIGHT_THUMB];
   // stacyPoints.RightHandIndex1 = MediaPipe[Keypoints.RIGHT_INDEX];
   // stacyPoints.RightHandPinky1 = MediaPipe[Keypoints.RIGHT_PINKY];
-  // stacyPoints.LeftUpLeg = MediaPipe[Keypoints.LEFT_HIP];
+  stacyPoints.LeftUpLeg = vec3(
+    MediaPipe[Keypoints.LEFT_HIP][0],
+    MediaPipe[Keypoints.LEFT_HIP][1],
+    MediaPipe[Keypoints.LEFT_HIP][2]
+  );
   // stacyPoints.LeftLeg = MediaPipe[Keypoints.LEFT_KNEE];
+  stacyPoints.LeftLeg = vec3(
+    MediaPipe[Keypoints.LEFT_KNEE][0],
+    MediaPipe[Keypoints.LEFT_KNEE][1],
+    MediaPipe[Keypoints.LEFT_KNEE][2]
+  );
   // stacyPoints.LeftFoot = MediaPipe[Keypoints.LEFT_ANKLE];
+  stacyPoints.LeftFoot = vec3(
+    MediaPipe[Keypoints.LEFT_ANKLE][0],
+    MediaPipe[Keypoints.LEFT_ANKLE][1],
+    MediaPipe[Keypoints.LEFT_ANKLE][2]
+  );
   // stacyPoints.LeftToeBase = MediaPipe[Keypoints.LEFT_FOOT_INDEX];
-  // stacyPoints.RightUpLeg = MediaPipe[Keypoints.RIGHT_HIP];
+  stacyPoints.LeftToeBase = vec3(
+    MediaPipe[Keypoints.LEFT_FOOT_INDEX][0],
+    MediaPipe[Keypoints.LEFT_FOOT_INDEX][1],
+    MediaPipe[Keypoints.LEFT_FOOT_INDEX][2]
+  );
+  stacyPoints.RightUpLeg = vec3(
+    MediaPipe[Keypoints.RIGHT_HIP][0],
+    MediaPipe[Keypoints.RIGHT_HIP][1],
+    MediaPipe[Keypoints.RIGHT_HIP][2]
+  );
   // stacyPoints.RightLeg = MediaPipe[Keypoints.RIGHT_KNEE];
+  stacyPoints.RightLeg = vec3(
+    MediaPipe[Keypoints.RIGHT_KNEE][0],
+    MediaPipe[Keypoints.RIGHT_KNEE][1],
+    MediaPipe[Keypoints.RIGHT_KNEE][2]
+  );
   // stacyPoints.RightFoot = MediaPipe[Keypoints.RIGHT_ANKLE];
+  stacyPoints.RightFoot = vec3(
+    MediaPipe[Keypoints.RIGHT_ANKLE][0],
+    MediaPipe[Keypoints.RIGHT_ANKLE][1],
+    MediaPipe[Keypoints.RIGHT_ANKLE][2]
+  );
   // stacyPoints.RightToeBase = MediaPipe[Keypoints.RIGHT_FOOT_INDEX];
+  stacyPoints.RightToeBase = vec3(
+    MediaPipe[Keypoints.RIGHT_FOOT_INDEX][0],
+    MediaPipe[Keypoints.RIGHT_FOOT_INDEX][1],
+    MediaPipe[Keypoints.RIGHT_FOOT_INDEX][2]
+  );
 
   // console.log(stacyPoints);
 
@@ -188,23 +246,60 @@ export default function testFunction(MediaPipe) {
   );
 
   // Starting transformation
-  stacyBones.Spine1 = { start: stacyPoints.Hips, end: stacyPoints.Spine1 };
-  const { Spine1 } = stacyBones;
-  Spine1.tgbone = Spine1.end;
-  Spine1.rgbone = Math.atan(
-    (Spine1.end.y - Spine1.start.y) / (Spine1.end.x - Spine1.start.x)
-  );
-  Spine1.rbone = Spine1.rgbone - Hips.rgbone;
-  Spine1.tgbone2 = subsVec3(Spine1.tgbone, Hips.tgbone);
-  Spine1.tbone = {
-    x:
-      Spine1.tgbone2.x * Math.cos(-Hips.rgbone) -
-      Spine1.tgbone2.y * Math.sin(-Hips.rgbone),
-    y:
-      Spine1.tgbone2.x * Math.sin(-Hips.rgbone) -
-      Spine1.tgbone2.y * Math.cos(-Hips.rgbone),
-    z: 0,
-  };
+  // stacyBones.Spine1 = { start: stacyPoints.Hips, end: stacyPoints.Spine1 };
+  // const { Spine1 } = stacyBones;
+  // Spine1.tgbone = Spine1.end;
+  // Spine1.rgbone = Math.atan(
+  //   (Spine1.end.y - Spine1.start.y) / (Spine1.end.x - Spine1.start.x)
+  // );
+  // Spine1.rbone = Spine1.rgbone - Hips.rgbone;
+  // Spine1.tgbone2 = subsVec3(Spine1.tgbone, Hips.tgbone);
+  // Spine1.tbone = {
+  //   x:
+  //     Spine1.tgbone2.x * Math.cos(-Hips.rgbone) -
+  //     Spine1.tgbone2.y * Math.sin(-Hips.rgbone),
+  //   y:
+  //     Spine1.tgbone2.x * Math.sin(-Hips.rgbone) -
+  //     Spine1.tgbone2.y * Math.cos(-Hips.rgbone),
+  //   z: 0,
+  // };
+
+  function convert(parent, child) {
+    stacyBones[child] = { start: stacyPoints[parent], end: stacyPoints[child] };
+    stacyBones[child].tgbone = stacyBones[child].end;
+    stacyBones[child].rgbone = Math.atan(
+      (stacyBones[child].end.y - stacyBones[child].start.y) /
+        (stacyBones[child].end.x - stacyBones[child].start.x)
+    );
+    stacyBones[child].rbone =
+      stacyBones[child].rgbone - stacyBones[parent].rgbone;
+    stacyBones[child].tgbone2 = subsVec3(
+      stacyBones[child].tgbone,
+      stacyBones[parent].tgbone
+    );
+    stacyBones[child].tbone = {
+      x:
+        stacyBones[child].tgbone2.x * Math.cos(-stacyBones[parent].rgbone) -
+        stacyBones[child].tgbone2.y * Math.sin(-stacyBones[parent].rgbone),
+      y:
+        stacyBones[child].tgbone2.x * Math.sin(-stacyBones[parent].rgbone) -
+        stacyBones[child].tgbone2.y * Math.cos(-stacyBones[parent].rgbone),
+      z: 0,
+    };
+  }
+
+  convert("Hips", "Spine");
+  convert("Spine", "Spine1");
+  convert("Spine1", "Spine2");
+  convert("Spine2", "Neck");
+  convert("Hips", "LeftUpLeg");
+  convert("LeftUpLeg", "LeftLeg");
+  convert("LeftLeg", "LeftFoot");
+  convert("LeftFoot", "LeftToeBase");
+  convert("Hips", "RightUpLeg");
+  convert("RightUpLeg", "RightLeg");
+  convert("RightLeg", "RightFoot");
+  convert("RightFoot", "RightToeBase");
 
   return stacyBones;
 }
