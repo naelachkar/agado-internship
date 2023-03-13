@@ -63,6 +63,14 @@ const Mixamo = Object.freeze({
   RightToeBase: 25,
 });
 
+function vec3(a, b, c) {
+  return {
+    x: a,
+    y: b,
+    z: c,
+  };
+}
+
 function avgVec3(v1, v2) {
   const v3 = {
     x: (v1[0] + v2[0]) * 0.5,
@@ -111,6 +119,8 @@ export default function testFunction(MediaPipe) {
     MediaPipe[Keypoints.LEFT_EAR],
     MediaPipe[Keypoints.RIGHT_EAR]
   );
+
+  
 
   // Swaping x and y
   //   console.log(stacyPoints);

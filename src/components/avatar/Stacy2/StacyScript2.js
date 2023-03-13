@@ -1,6 +1,7 @@
 import img from "../../assets/AgadoStacy.jpeg";
 import mediapipeToMixamo, { MixamoBones } from "./mediapipeToMixamo";
 import shula from "./shula.json";
+import test2 from "./test2";
 import testFunction from "./testFunction";
 
 async function StacyScript() {
@@ -59,10 +60,14 @@ async function StacyScript() {
     var loader = new THREE.GLTFLoader();
 
     //! Conversion from MediaPipe to Mixamo
-    const converted = mediapipeToMixamo(shula);
-    const firstPose = shula.frames[0]["3d_pose"];
-    const convertedTest = testFunction(firstPose);
-    console.log(convertedTest);
+    // const converted = mediapipeToMixamo(shula);
+    // console.log(converted);
+    // const firstPose = shula.frames[0]["3d_pose"];
+    // const convertedTest = testFunction(firstPose);
+    // console.log(convertedTest);
+
+    const convtest2 = test2(shula);
+    console.log(convtest2);
 
     loader.load(
       MODEL_PATH,
@@ -86,10 +91,9 @@ async function StacyScript() {
           });
         });
 
-
-        bones[0].position = convertedTest.HipsBone.end;
-        bones[2].position = convertedTest.Spine1Bone.tbone;
-        bones[2].rotation = convertedTest.Spine1Bone.rbone;
+        // bones[0].position = convertedTest.HipsBone.end;
+        // bones[2].position = convertedTest.Spine1Bone.tbone;
+        // bones[2].rotation = convertedTest.Spine1Bone.rbone;
 
         // const boneList = {};
         // console.log(skeleton.bones);
